@@ -40,6 +40,8 @@ Route::get('barcode','BarcodeController@barcode');
 Route::get('pdf-barcode/{id}', 'BarcodeController@pdf_barcode');
 Route::get('test-barcode', 'BarcodeController@test_barcode');
 
+Route::get('geolocation', 'GeolocationController@index');
+
 Route::get('orders', function () {
     return view('orders');
 })->name('orders');

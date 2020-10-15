@@ -14,7 +14,9 @@
 
 @section('content')
 
-  <main class="wrapper" style="padding-top:2em">
+<div class="card">
+                <div class="card-body">
+  <main class="wrapper">
   <div class="card-body">
                 <div class="table-responsive">
                 <table class="table">
@@ -24,21 +26,22 @@
       <p></p>
 
       <div>
-        <a class="button" id="startButton">Start</a>
-        <a class="button" id="resetButton">Reset</a>
+      <button type="button" class="btn btn-success btn-uppercase">
+          <i class="ti-check-box mr-2" id="startButton">Start</i></button>
+      <button type="button" class="btn btn-danger btn-uppercase" id="resetButton">
+      <i class="ti-check-box mr-2" id="startButton">Reset</i></button>
       </div>
-
+<br/>
       <div>
         <video id="video" width="300" height="200" style="border: 1px solid gray"></video>
       </div>
-
+      <br/>
       <div id="sourceSelectPanel" style="display:none">
         <label for="sourceSelect">Change video source:</label>
         <select id="sourceSelect" style="max-width:400px">
         </select>
       </div>
 
-      <label>Result:</label>
       <pre><code id="result"></code></pre>
 
       <p><a href="https://github.com/zxing-js/library/tree/master/docs/examples/multi-camera/"></a></p>
@@ -54,6 +57,8 @@
 </div>
 </div>
   </main>
+  </div>
+  </div>
 
   <script type="text/javascript" src="https://unpkg.com/@zxing/library@latest"></script>
   <script type="text/javascript">
@@ -86,12 +91,16 @@
               if (result) {
                 console.log(result)
                 document.getElementById('result').textContent = result.text
-                swal({
-                title: "This is your Code",
-                text: result.text,
-                icon: "success",
-                button: "Ok!",
-            })
+                toastr.options = {
+                      timeOut: 3000,
+                      progressBar: true,
+                      showMethod: "slideDown",
+                      hideMethod: "slideUp",
+                      showDuration: 200,
+                      hideDuration: 200
+                  };
+
+              toastr.success(result.text);
               }
               if (err && !(err instanceof ZXing.NotFoundException)) {
                 console.error(err)
@@ -114,16 +123,5 @@
         })
     })
   </script>
-
-<script>
-  console.log('x : ')
-            const x = document.getElementsByClassName('post0');
-            for(let i=0;i<x.length;i++){
-                x[i].addEventListener('click',function(){
-                    x[i].submit();
-                });
-            }
-            swal("Welcome to Scan Barcode!", "You clicked the button!", "success");
-</script>
 
 @endsection
