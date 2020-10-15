@@ -702,7 +702,7 @@
                         <li>
                             <a href="#" data-menu-target="#apps">
                                 <span class="menu-tab-icon">
-                                    <i data-feather="layout"></i>
+                                    <i data-feather="users"></i>
                                 </span>
                                 <span>Customers</span>
                             </a>
@@ -713,6 +713,14 @@
                                     <i data-feather="image"></i>
                                 </span>
                                 <span>Barcode</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-menu-target="#maps">
+                                <span class="menu-tab-icon">
+                                    <i data-feather="map-pin"></i>
+                                </span>
+                                <span>Geolocation</span>
                             </a>
                         </li>
                   
@@ -805,11 +813,23 @@
                         <li>
                             <a class="active" href="test-barcode">
                                 <span class="nav-link-icon">
-                                    <i class="fa fa-yoast"></i>
+                                    <i class="fa fa-video-camera"></i>
                                 </span>
                                 <span>Scan Barcode</span>
                             </a>
                         </li>
+                    </ul>
+                    <ul id="maps">
+                        <li class="navigation-divider">Geolocation</li>
+                        <li>
+                            <a class="active" href="geolocation">
+                            <span class="nav-link-icon">
+                                    <i class="fa fa-chevron-down"></i>
+                                </span>
+                                <span>Geolocation</span>
+                            </a>
+                        </li>
+                        
                     </ul>
                     
                     

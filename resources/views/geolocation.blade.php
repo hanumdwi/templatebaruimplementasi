@@ -43,7 +43,7 @@
 
 @section('script')
 
-<script src="{{ url('assets/js/examples/google-map.js') }}"></script>
+ <script src="{{ url('assets/js/examples/google-map.js') }}"></script>
 
 <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAznbmf9fxvDrf8Fnv8MPq09mQN5NVXtZk&callback=initMap&libraries=&v=weekly"
