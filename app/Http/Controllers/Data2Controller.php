@@ -39,7 +39,7 @@ class Data2Controller extends Controller
     public function customer_store1(Request $request)
     {
         //ID CUSTOMER BELUM AUTO INCREMENT
-        DB::table('customer')->insert(['ID_CUSTOMER'=>'100','NAMA' => $request->nama,
+        DB::table('customer')->insert(['NAMA' => $request->nama,
         'ALAMAT' => $request->alamat,
         'FOTO' => $request->fotoo,
         'ID_KELURAHAN'=> $request->kelurahan,
@@ -55,12 +55,12 @@ class Data2Controller extends Controller
         $path = '/public/file_foto/foto_customer'.$x.'.png';
         Storage::put($path,$foto);
 
-        DB::table('customer')->insert(['ID_CUSTOMER'=>'400','NAMA' => $request->nama,
+        DB::table('customer')->insert(['NAMA' => $request->nama,
         'ALAMAT' => $request->alamat,
         'FILE_PATH' => $path,
         'ID_KELURAHAN'=> $request->kelurahan,
         ]);
-        return redirect('/dropdownlist');
+        return redirect('/dropdownlist1');
     }
 
     public function getCountries1()

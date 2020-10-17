@@ -128,7 +128,7 @@
     Webcam.set({
         width: 200,
         height: 170,
-        image_format: 'jpeg',
+        image_format: 'png',
         jpeg_quality: 100,
         flip_horiz: true
     });
@@ -147,7 +147,7 @@
         Webcam.snap(function (data_uri) {
          document.getElementById('hasil').innerHTML = 
                 '<img src="' + data_uri + '" width="200px" height="153px" />'+
-                '<input type="hidden" value="'+ data_uri +'" name="fotoo">'
+                '<input type="hidden" value="'+ data_uri +'" name="foto">'
         });
     }
          
