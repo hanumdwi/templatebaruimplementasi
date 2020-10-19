@@ -36,7 +36,7 @@ class BarcodeController extends Controller
     function pdf_barcode($id){
         $barang = DB::table('barang')->where('id_barang',$id)->get();
         $barang_id=$id;
-        $pdf = PDF::loadview('/cetakbarcode',['barang'=>$barang,'barang_id'=>$barang_id])->setPaper('a4');
+        $pdf = PDF::loadview('/cetakbarcode',['barang'=>$barang,'barang_id'=>$barang_id])->setPaper('f4');
         
         // $paper = array(0, 0, 51,0236, 107,717);
         //  $pdf->setPaper($paper);

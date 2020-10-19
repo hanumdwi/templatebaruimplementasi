@@ -21,6 +21,10 @@ Route::get('ecommerce-dashboard', function () {
     return view('ecommerce-dashboard');
 })->name('ecommerce-dashboard');
 
+//login
+Route::get('/','OtentifikasiController@index');
+Route::post('login','OtentifikasiController@login');
+
 Route::get('dropdownlist/getstates/{id}','Data2Controller@getStates');
 Route::get('dropdownlist/getkecamatan/{id}','Data2Controller@getKecamatan');
 Route::get('dropdownlist/getkelurahan/{id}','Data2Controller@getKelurahan');

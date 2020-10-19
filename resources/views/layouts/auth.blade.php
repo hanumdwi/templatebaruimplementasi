@@ -15,7 +15,7 @@
     <!-- App styles -->
     <link rel="stylesheet" href="{{ url('assets/css/app.min.css') }}" type="text/css">
 </head>
-<body class="form-membership" style="background: url({{ url('assets/media/image/image1.jpg') }})">
+<body class="form-membership" style="background: url({{ url('assets/media/image/bgd.jpg') }})">
 <!-- Preloader -->
 <div class="preloader">
     <img class="logo" src="{{ url('assets/media/image/logo/logo.png') }}" alt="logo">

@@ -3,161 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <style>
-        body {
-        width: 104%;
-        height: 50%;
-        margin: 0;
-        padding: 0;
-        background-color: #FAFAFA;
-        font: 12pt "Tahoma";
-    }
-    * {
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-    }
-    .page {
-        width: 21mm;
-        min-height: 29mm;
-        padding: 20mm;
-        margin: 10mm auto;
-        border: 1px #D3D3D3 solid;
-        border-radius: 5px;
-        background: white;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    }
-    .subpage {
-        padding: 1cm;
-        border: 5px red solid;
-        height: 257mm;
-        outline: 1cm #FFEAEA solid;
-    }
-    
-    @page {
-        size: A4;
-        margin: 5;
-    }
-    @media print {
-        html, body {
-            width: 21mm;
-            height: 29mm;        
-        }
-        .page {
-            margin: 1;
-            border: initial;
-            border-radius: initial;
-            width: initial;
-            min-height: initial;
-            box-shadow: initial;
-            background: initial;
-            page-break-after: always;
-        }
-    }
-
-	.Row {
-    display: table;
-    width: 100%; /*Optional*/
-    table-layout: fixed; /*Optional*/
-    border-spacing: 1mm;
-    margin-top:0mm /*Optional*/
-}
-.Column {
-    display: table-cell;
-    table-layout: fixed; /*Optional*/
-    border-spacing: 1mm;
-    margin-top:5.5mm /*Optional*/
-}
-	</style>
+    <title>Barcode-{{$barang_id}}</title>
 </head>
+<style type="text/css">
+  /* @page {size: F4 potrait; margin-left: 12.44px; margin-top: 11.33px;} */
+  @page {size: F4 potrait; margin-left: 12.44px; margin-top: 16;}
+  body {font-size: 7pt;}
+  td { border:0px solid !important; width: 146.9px; height: 47.99; text-align: center; padding-bottom: 2.1; padding-top: 3; padding-left: 2.5;}
+  img{text-align: left;}
+  tr{margint-top:2mm;}
+</style>
 <body>
-
-@php
-for ($x = 1; $x <= 8; $x++) { @endphp
-      <div class="Row">
-      <div class="Column">
-       <div class="coba" style="height: 45.031496px; width:125.503937px;"> 
-        <img src="data:image/png;base64,{{DNS1D::getBarcodePNG('$barang_id', 'C128')}}" style="height: 20.795276px; width:125.503937px" alt="barcode" />
-            
-            <div class="coba1" style="margin-top: 0px; margin-left:37.795276px;">
-            <font size="1"><strong>{{$barang_id}}</strong></font>
-            </div>
-
-            <div class="coba2" style="margin-top:0px; margin-left:45.354331px;">
-                @foreach($barang as $b)
-                <font size="1"> {{$b->NAMA_BARANG}} </font>
-                @endforeach
-            </div>
-       </div>
-       </div>
-       <div class="Column">
-       <div class="coba" style="height: 45.031496px; width:125.503937px;"> 
-        <img src="data:image/png;base64,{{DNS1D::getBarcodePNG('$barang_id', 'C128')}}" style="height: 20.795276px; width:125.503937px" alt="barcode" />
-            
-            <div class="coba1" style="margin-top:0px; margin-left:37.795276px;">
-            <font size="1"><strong>{{$barang_id}}</strong></font>
-            </div>
-
-            <div class="coba2" style="margin-top:0px; margin-left:45.354331px;">
-                @foreach($barang as $b)
-                <font size="1"> {{$b->NAMA_BARANG}} </font>
-                @endforeach
-            </div>
-       </div>
-       </div>
-
-       <div class="Column">
-       <div class="coba" style="height: 45.031496px; width:125.503937px;"> 
-        <img src="data:image/png;base64,{{DNS1D::getBarcodePNG('$barang_id', 'C128')}}" style="height: 20.795276px; width:125.503937px" alt="barcode" />
-            
-            <div class="coba1" style="margin-top:0px; margin-left:37.795276px;">
-            <font size="1"><strong>{{$barang_id}}</strong></font>
-            </div>
-
-            <div class="coba2" style="margin-top:0px; margin-left:45.354331px;">
-                @foreach($barang as $b)
-                <font size="1"> {{$b->NAMA_BARANG}} </font>
-                @endforeach
-            </div>
-       </div>
-       </div>
-
-       <div class="Column">
-       <div class="coba" style="height: 45.031496px; width:125.503937px;"> 
-        <img src="data:image/png;base64,{{DNS1D::getBarcodePNG('$barang_id', 'C128')}}" style="height: 20.795276px; width:125.503937px" alt="barcode" />
-            
-            <div class="coba1" style="margin-top:0px; margin-left:37.795276px;">
-            <font size="1"><strong>{{$barang_id}}</strong></font>
-            </div>
-
-            <div class="coba2" style="margin-top:0px; margin-left:45.354331px;">
-                @foreach($barang as $b)
-                <font size="1"> {{$b->NAMA_BARANG}} </font>
-                @endforeach
-            </div>
-       </div>
-       </div>
-
-       <div class="Column">
-       <div class="coba" style="height: 45.031496px; width:125.503937px;">
-         
-         <img src="data:image/png;base64,{{DNS1D::getBarcodePNG('$barang_id', 'C128')}}" style="height: 20.795276px; width:125.503937px" alt="barcode" />
-          
-          <div class="coba1" style="margin-top:0px; margin-left:37.795276px;">
-            <font size="1"><strong>{{$barang_id}}</strong></font>
-          </div>
-  
-          <div class="coba2" style="margin-top:0px; margin-left:45.354331px;">
-              @foreach($barang as $b)
-              <font size="1"> {{$b->NAMA_BARANG}} </font>
-              @endforeach
-          </div>
-         </div>
-         </div>
-    </div> 
-    @php } @endphp
+  <table width="100%">
+      @php for($i=0;$i<8;$i++){ @endphp
+      <tr>
+        <td align="center">
+          <img src="data:image/png;base64,{{DNS1D::getBarcodePNG('$barang_id', 'C128')}}" height="15" width="100" >
+          <br>{{$barang_id}}
+          @foreach($barang as $b)
+          <br>{{$b->NAMA_BARANG}}
+          @endforeach
+        </td>
+        <td align="center">
+          <img src="data:image/png;base64,{{DNS1D::getBarcodePNG('$barang_id', 'C128')}}" height="15" width="100">
+          <br>{{$barang_id}}
+          @foreach($barang as $b)
+          <br>{{$b->NAMA_BARANG}}
+          @endforeach
+        </td>
+        <td align="center">
+          <img src="data:image/png;base64,{{DNS1D::getBarcodePNG('$barang_id', 'C128')}}" height="15" width="100">
+          <br>{{$barang_id}}
+          @foreach($barang as $b)
+          <br>{{$b->NAMA_BARANG}}
+          @endforeach
+        </td>
+        <td align="center">
+          <img src="data:image/png;base64,{{DNS1D::getBarcodePNG('$barang_id', 'C128')}}" height="15" width="100">
+          <br>{{$barang_id}}
+          @foreach($barang as $b)
+          <br>{{$b->NAMA_BARANG}}
+          @endforeach
+        </td>
+        <td align="center">
+          <img src="data:image/png;base64,{{DNS1D::getBarcodePNG('$barang_id', 'C128')}}" height="15" width="100">
+          <br>{{$barang_id}}
+          @foreach($barang as $b)
+          <br>{{$b->NAMA_BARANG}}
+          @endforeach
+        </td>
+      </tr>
+      @php } @endphp
+  </table>
 </body>
 </html>
 
-<script type="text/javascript">window.print();</script>
