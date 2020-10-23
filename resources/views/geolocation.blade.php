@@ -36,9 +36,54 @@
 @endsection
 
         @section('content')
-            
-            <div id="map"></div>
+        <div class="row">
+        <div class="col-md-12">
 
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="card-title">Form Default</h6>
+                                    <br>
+                                    <form class="form-horizontal" action="" method="post">
+                              @csrf
+                                    <div class="form-group">
+                                    <label for="latitude">Latitude :</label>
+                                        <input name="latitude" readonly class="form-control"></input>
+                                        </div>
+                                        <br>
+                                    <div class="form-group">
+                                        <label for="longitude">Longitude :</label>
+                                        <input name="longitude" readonly class="form-control"></input>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="accuracy">Accuracy :</label>
+                                        <input name="accuracy" readonly class="form-control"></input>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <button type="button" class="btn btn-primary btn-xl-6 btn-lg-2">Submit Geolocation</button>
+                                    <!-- <div id="default-map" style="height: 400px"></div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="card-title">Geolocation</h6>
+                                    <div id="map" style="height: 400px"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            <!-- <div class="col-xl-6 col-lg-4" id="map"></div> -->
+          </div></div></div></div>
         @endsection
 
 @section('script')
@@ -50,59 +95,69 @@
       defer
     ></script>
 <script>
+
         function loadScript() {
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = localStorage.getItem("MapCode");
-    document.body.appendChild(script);
-}
-
-window.onload = loadScript;
-      // Note: This example requires that you consent to location sharing when
-      // prompted by your browser. If you see the error "The Geolocation service
-      // failed.", it means you probably did not give permission for the browser to
-      // locate you.
-      let map, infoWindow;
-
-      function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-          center: { lat: -34.397, lng: 150.644 },
-          zoom: 6,
-        });
-        infoWindow = new google.maps.InfoWindow();
-
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(
-            (position) => {
-              const pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude,
-              };
-              infoWindow.setPosition(pos);
-              infoWindow.setContent("Location found.");
-              infoWindow.open(map);
-              map.setCenter(pos);
-            },
-            () => {
-              handleLocationError(true, infoWindow, map.getCenter());
-            }
-          );
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
+          var script = document.createElement('script');
+          script.type = 'text/javascript';
+          script.src = localStorage.getItem("MapCode");
+          document.body.appendChild(script);
         }
-      }
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(
-          browserHasGeolocation
-            ? "Error: The Geolocation service failed."
-            : "Error: Your browser doesn't support geolocation."
-        );
-        infoWindow.open(map);
-      }
+        window.onload = loadScript;
+          let map, infoWindow;
+
+        function initMap() {
+          map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 6,
+          });
+          swal("This Position!", "Your Position Has Found!", "success");
+          infoWindow = new google.maps.InfoWindow();
+
+          // Try HTML5 geolocation.
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                var accuracy;
+                const pos = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude,
+                  accuracy: position.coords.accuracy,
+                };
+                console.log(pos);
+                infoWindow.setPosition(pos);
+                infoWindow.setContent("Location found.");
+                infoWindow.open(map);
+                map.setCenter(pos);
+              },
+              () => {
+                handleLocationError(true, infoWindow, map.getCenter());
+              }
+            );
+          } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+          }
+        }
+
+        function showPosition(pos) {
+          lat = position.coords.latitude;
+          lng = position.coords.longitude;
+          accuracy = position.coords.accuracy;
+
+          var hasil = "Latitude : " + lat + "\n Longitude : " + "\n Accuracy : ";
+          swal("Your position", hasil, "success");
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+          infoWindow.setPosition(pos);
+          infoWindow.setContent(
+            browserHasGeolocation
+              ? "Error: The Geolocation service failed."
+              : "Error: Your browser doesn't support geolocation."
+          );
+          infoWindow.open(map);
+        }
     </script>
 
     </script>

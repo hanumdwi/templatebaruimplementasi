@@ -822,11 +822,27 @@
                     <ul id="maps">
                         <li class="navigation-divider">Geolocation</li>
                         <li>
+                            <a class="active" href="barcodetoko">
+                            <span class="nav-link-icon">
+                                    <i class="fa fa-upload"></i>
+                                </span>
+                                <span>Cetak Barcode Toko</span>
+                            </a>
+                        </li>
+                        <li>
                             <a class="active" href="geolocation">
                             <span class="nav-link-icon">
                                     <i class="fa fa-chevron-down"></i>
                                 </span>
                                 <span>Geolocation</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="active" href="scanbarcodetoko">
+                            <span class="nav-link-icon">
+                                    <i class="fa fa-video-camera"></i>
+                                </span>
+                                <span>Scan Barcode Geolocation</span>
                             </a>
                         </li>
                         
@@ -862,7 +878,7 @@
                 </div>
             </footer>
             <!-- session PHP -->
-        <footer>
+            <footer>
             <div class="modal fade" id="logout_popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -907,6 +923,7 @@
 <script>
         var c = 0; max_count = 10; logout = true;
         startTimer();
+
         function startTimer(){
             setTimeout(function(){
                 logout = true;
@@ -916,7 +933,8 @@
                 $('#logout_popup').modal('show');
                 startCount();
 
-            }, 10*1000); //10 detik =10*1000, 30 menit=30*60*1000, 
+            }, 30*60*1000);//10 detik =10*1000, 30 menit=30*60*1000, 
+         
         }
 
         function resetTimer(){
@@ -935,20 +953,33 @@
 
         function timedCount() {
             c = c + 1;
+            if(c<=10){
             remaining_time = max_count - c;
-            if( remaining_time == 0 && logout ){
-                $('#logout_popup').modal('hide');
-                //location.href = $('#logout_url').val();
-                chooseOut();
-            }else{
-                $('#timer').html(remaining_time);
-                t = setTimeout(function(){timedCount()}, 1000);
+                if( remaining_time == 0 && logout ){
+                    $('#logout_popup').modal('hide');
+                    //location.href = $('#logout_url').val();
+                    chooseOut();
+                }
+                else{
+                    $('#timer').html(remaining_time);
+                    t = setTimeout(function(){timedCount()}, 1000);
+                }
+        }
+            else{
+                startTimer();
             }
         }
 
         function startCount() {
            timedCount();
         }
+
+        function press(){
+            $('#logout_popup').modal('hide');
+            console.log('press');
+            resetTimer();
+        }
+
     </script>
 </body>
 </html>

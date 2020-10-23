@@ -3,35 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Milon\Barcode\DNS1D;
-use DB;
-use PDF;
 
-class BarcodeController extends Controller
+class BarcodeTokoController extends Controller
 {
     function barcode(){
 
         // $d = new DNS1D();
         // $d->setStorPath(__DIR__.'/cache/');
         // $barcode_data = $d->getBarcodeHTML('9780691147727', 'C128');
-        $barang=DB::table('barang')->get();
+        // $barang=DB::table('barang')->get();
 
 
 
-        return view('barcode', ['barang' =>$barang]);
+        return view('barcodetoko');
 
     }
-
-    // public function printBarcode(){
-    //     $barang = Barcode::get();
-    //     $no = 1; 
-    //     $paper_width = 793.7007874; // 21 cm
-    //     $paper_height = 623.62204724; // 16.5 cm
-    //     $paper_size = array(0, 0, $paper_width, $paper_height);
-	// 	$pdf =  PDF::loadView  ('/barcode/barcode_pdf',  compact('barang', 'no')); 
-	// 	$pdf->setPaper("f4"); 
-	// 	return $pdf->stream(); 
-    // }
 
     function pdf_barcode($id){
         $barang = DB::table('barang')->where('id_barang',$id)->get();

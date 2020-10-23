@@ -123,6 +123,8 @@
                             </form>
                         </div>
                     </div>
+
+@section('script')
 <script>
     // CAMERA SETTINGS.
     Webcam.set({
@@ -238,15 +240,7 @@
     });
     </script>
 
-<script>
-  console.log('x : ')
-            const x = document.getElementsByClassName('post0');
-            for(let i=0;i<x.length;i++){
-                x[i].addEventListener('click',function(){
-                    x[i].submit();
-                });
-            }
-            swal("Welcome to Add Customer 1!", "You clicked the button!", "success");
-</script>
+@endsection
+
 
 @endsection
