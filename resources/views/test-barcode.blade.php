@@ -42,7 +42,11 @@
         </select>
       </div>
 
+<div class="row" style="background-color:red;">
+      <label>Result : </label>
       <pre><code id="result"></code></pre>
+      </div>
+      
 
       <p><a href="https://github.com/zxing-js/library/tree/master/docs/examples/multi-camera/"></a></p>
     </section>
@@ -89,18 +93,13 @@
           document.getElementById('startButton').addEventListener('click', () => {
             codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
               if (result) {
-                console.log(result)
-                document.getElementById('result').textContent = result.text
-                toastr.options = {
-                      timeOut: 3000,
-                      progressBar: true,
-                      showMethod: "slideDown",
-                      hideMethod: "slideUp",
-                      showDuration: 200,
-                      hideDuration: 200
-                  };
-
-              toastr.success(result.text);
+                console.log(result);
+                document.getElementById('result').textContent = result.text;
+                document.getElementById('result').value = result.text;
+                console.log('woi');
+                console.log(result.text);
+                $('#result').html(result.text);
+                
               }
               if (err && !(err instanceof ZXing.NotFoundException)) {
                 console.error(err)

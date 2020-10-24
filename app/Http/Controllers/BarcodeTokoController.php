@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Milon\Barcode\DNS1D;
+use DB;
+use PDF;
 
 class BarcodeTokoController extends Controller
 {
@@ -15,14 +18,27 @@ class BarcodeTokoController extends Controller
 
 
 
-        return view('barcodetoko');
+        $lokasi_toko=DB::table('lokasi_toko')->get();
+
+
+
+        return view('barcodetoko', ['lokasi_toko' =>$lokasi_toko]);
 
     }
 
+    function insert(Request $request){
+        DB::table('lokasi_toko')->insert(['NAMA_TOKO' => $request->namatoko,
+        'LATITUDE' => $request->latitude,
+        'LONGITUDE' => $request->longitude,
+        'ACCURACY'=> $request->accuracy,
+        ]);
+        return redirect('/geolocation');
+    }
+
     function pdf_barcode($id){
-        $barang = DB::table('barang')->where('id_barang',$id)->get();
-        $barang_id=$id;
-        $pdf = PDF::loadview('/cetakbarcode',['barang'=>$barang,'barang_id'=>$barang_id])->setPaper('f4');
+        $lokasi_toko = DB::table('lokasi_toko')->where('barcode',$id)->get();
+        $barcode=$id;
+        $pdf = PDF::loadview('/cetakbarcodetoko',['lokasi_toko'=>$lokasi_toko,'barcode'=>$barcode])->setPaper('f4');
         
         // $paper = array(0, 0, 51,0236, 107,717);
         //  $pdf->setPaper($paper);
@@ -32,6 +48,11 @@ class BarcodeTokoController extends Controller
     }
 
     function test_barcode(){
-        return view('test-barcode');
+        return view('scanbarcodetoko');
+    }
+
+    function getBarcode($id){
+        $databarcode = DB::table("lokasi_toko")->where("BARCODE",$id)->get();
+        return json_encode($databarcode);
     }
 }

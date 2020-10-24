@@ -39,17 +39,23 @@
                         </thead>
                         <tbody>
                         <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                        <a href="">
+                        @foreach($lokasi_toko as $toko)
+                                <td>{{ $toko -> BARCODE }}</td>
+                                <td>{{ $toko -> NAMA_TOKO}}</td>
+                                <td>{{ $toko -> LATITUDE }}</td>
+                                <td>{{ $toko -> LONGITUDE }}</td>
+                                <td>{{ $toko -> ACCURACY }}</td>
+                                <td>
+                                <a href="cetakbarcodetoko/{{$toko -> BARCODE}}">
                                     <button type="button" class="btn btn-outline-info btn-uppercase">
                                         <i class="ti-plus mr-2"></i>Cetak barcode
                                     </button></a>
-                        </td>
+                                    </td>
+                                    </tr>
+                                    @endforeach
+                                    <!-- </tr> -->
+                                    </tbody>
+                                    <tfoot>
                         <tr>
                         <th>Barcode</th>
                             <th>Nama Toko</th>

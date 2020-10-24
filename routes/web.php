@@ -46,9 +46,11 @@ Route::get('test-barcode', 'BarcodeController@test_barcode');
 
 //TOKO
 Route::get('barcodetoko','BarcodeTokoController@barcode');
-Route::get('pdf-toko/{id}', 'BarcodeTokoController@pdf_barcode');
-Route::get('scanbarcodetoko', 'BarcodeController@test_barcode');
+Route::get('cetakbarcodetoko/{id}', 'BarcodeTokoController@pdf_barcode');
+Route::get('scanbarcodetoko', 'BarcodeTokoController@test_barcode');
+Route::post('insertlokasi', 'BarcodeTokoController@insert');
 Route::get('geolocation', 'GeolocationController@index');
+Route::get('barcode/getbarcode/{id}','BarcodeTokoController@getBarcode');
 
 Route::get('orders', function () {
     return view('orders');

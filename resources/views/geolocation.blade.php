@@ -48,26 +48,28 @@
                                 <div class="card-body">
                                     <h6 class="card-title">Form Default</h6>
                                     <br>
-                                    <form class="form-horizontal" action="" method="post">
+                                    <form class="form-horizontal" action="insertlokasi" method="post">
                               @csrf
                                     <div class="form-group">
-                                    <label for="latitude">Latitude :</label>
-                                        <input name="latitude" readonly class="form-control"></input>
+                                    <label for="latitude">Nama Toko :</label>
+                                        <input name="namatoko" class="form-control"></input>
                                         </div>
-                                        <br>
+                                    <div class="form-group">
+                                    <label for="latitude">Latitude :</label>
+                                        <input name="latitude" id="lat" readonly class="form-control"></input>
+                                        </div>
                                     <div class="form-group">
                                         <label for="longitude">Longitude :</label>
-                                        <input name="longitude" readonly class="form-control"></input>
+                                        <input name="longitude" id="lng" readonly class="form-control"></input>
                                     </div>
-                                    <br>
                                     <div class="form-group">
                                         <label for="accuracy">Accuracy :</label>
-                                        <input name="accuracy" readonly class="form-control"></input>
+                                        <input name="accuracy"id="accuraccy" readonly class="form-control"></input>
                                     </div>
                                     <br>
-                                    <br>
-                                    <br>
-                                    <button type="button" class="btn btn-primary btn-xl-6 btn-lg-2">Submit Geolocation</button>
+                                    <button  type="button" class="btn btn-primary btn-xl-6 btn-lg-2" id ="geolocation" onclick="getlocation()">Submit Geolocation</butoon>
+                                    <button  type="submit" class="btn btn-secondary btn-xl-6 btn-lg-2 ml-3" >Submit Data</butoon>
+                                    
                                     <!-- <div id="default-map" style="height: 400px"></div> -->
                                 </div>
                             </div>
@@ -88,7 +90,7 @@
 
 @section('script')
 
- <script src="{{ url('assets/js/examples/google-map.js') }}"></script>
+ <!-- <script src="{{ url('assets/js/examples/google-map.js') }}"></script> -->
 
 <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAznbmf9fxvDrf8Fnv8MPq09mQN5NVXtZk&callback=initMap&libraries=&v=weekly"
@@ -96,68 +98,62 @@
     ></script>
 <script>
 
-        function loadScript() {
-          var script = document.createElement('script');
-          script.type = 'text/javascript';
-          script.src = localStorage.getItem("MapCode");
-          document.body.appendChild(script);
-        }
+        var latitude = document.getElementById("lat");
+        var longitude = document.getElementById("lng");
+        var akurasi = document.getElementById("accuraccy");
 
-        window.onload = loadScript;
-          let map, infoWindow;
+        
+        function getlocation(){ 
+			if(navigator.geolocation){ 
+				navigator.geolocation.getCurrentPosition(showLoc, errHand); 
+				
+			} 
+		} 
+		function showLoc(pos){ 
+			latt = pos.coords.latitude; 
+			long = pos.coords.longitude; 
+			var accuracy = pos.coords.accuracy;
+            // x.innerHTML = "Latitude: " + latt + "<br>Longitude: " + long;
+			latitude.value = latt;
+			longitude.value = long
+			akurasi.value = accuracy;
 
-        function initMap() {
-          map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: -34.397, lng: 150.644 },
-            zoom: 6,
-          });
-          swal("This Position!", "Your Position Has Found!", "success");
-          infoWindow = new google.maps.InfoWindow();
+			 var hasil = "Latitude: " + latt + "\n Longitude: " + long + "\n Accuracy: "+accuracy;
+			swal("Lokasi Di Temukan ",hasil, "success");
+			var lattlong = new google.maps.LatLng(latt, long); 
+			var OPTions = { 
+				center: lattlong, 
+				zoom: 10, 
+				mapTypeControl: true, 
+				navigationControlOptions: {style:google.maps.NavigationControlStyle.SMALL} 
+			} 
+			var mapg = new google.maps.Map(document.getElementById("map"), OPTions); 
+	
+			var markerg = 
+			new google.maps.Marker({position:lattlong, map:mapg, title:"You are here!"}); 
+		} 
 
-          // Try HTML5 geolocation.
-          if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-              (position) => {
-                var accuracy;
-                const pos = {
-                  lat: position.coords.latitude,
-                  lng: position.coords.longitude,
-                  accuracy: position.coords.accuracy,
-                };
-                console.log(pos);
-                infoWindow.setPosition(pos);
-                infoWindow.setContent("Location found.");
-                infoWindow.open(map);
-                map.setCenter(pos);
-              },
-              () => {
-                handleLocationError(true, infoWindow, map.getCenter());
-              }
-            );
-          } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
-          }
-        }
-
-        function showPosition(pos) {
-          lat = position.coords.latitude;
-          lng = position.coords.longitude;
-          accuracy = position.coords.accuracy;
-
-          var hasil = "Latitude : " + lat + "\n Longitude : " + "\n Accuracy : ";
-          swal("Your position", hasil, "success");
-        }
-
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-          infoWindow.setPosition(pos);
-          infoWindow.setContent(
-            browserHasGeolocation
-              ? "Error: The Geolocation service failed."
-              : "Error: Your browser doesn't support geolocation."
-          );
-          infoWindow.open(map);
-        }
+		
+		
+		function errHand(err) { 
+			switch(err.code) { 
+				case err.PERMISSION_DENIED: 
+					result.innerHTML = "The application doesn't have the permission" + 
+							"to make use of location services" 
+					break; 
+				case err.POSITION_UNAVAILABLE: 
+					result.innerHTML = "The location of the device is uncertain" 
+					break; 
+				case err.TIMEOUT: 
+					result.innerHTML = "The request to get user location timed out" 
+					break; 
+				case err.UNKNOWN_ERROR: 
+					result.innerHTML = "Time to fetch location information exceeded"+ 
+					"the maximum timeout interval" 
+					break; 
+			} 
+		} 
+      
     </script>
 
     </script>
