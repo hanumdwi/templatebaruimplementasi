@@ -21,6 +21,7 @@
                 <div class="table-responsive">
                 <table class="table">
     <section class="container" id="demo-content">
+    <center>
       <h1 class="title">Scan Barcode</h1>
 
       <p></p>
@@ -37,20 +38,25 @@
       </div>
       <br/>
       <div id="sourceSelectPanel" style="display:none">
-        <label for="sourceSelect">Change video source:</label>
+        <label for="sourceSelect">Change video source : </label>
         <select id="sourceSelect" style="max-width:400px">
         </select>
       </div>
 
-<div class="row" style="background-color:red;">
+      <div class="form-group col-md-2">
+      <label for="inputZip">Result :</label>
+      <input type="text" readonly class="form-control" id="result">
+    </div>
+  </div>
+<!-- <div class="row" style="background-color:red;">
       <label>Result : </label>
       <pre><code id="result"></code></pre>
-      </div>
+      </div> -->
       
 
       <p><a href="https://github.com/zxing-js/library/tree/master/docs/examples/multi-camera/"></a></p>
     </section>
-
+    </center>
     <footer class="footer">
       <section class="container">
         <p><a target="_blank"
@@ -99,6 +105,17 @@
                 console.log('woi');
                 console.log(result.text);
                 $('#result').html(result.text);
+                toastr.options = {
+                      timeOut: 3000,
+                      progressBar: true,
+                      showMethod: "slideDown",
+                      hideMethod: "slideUp",
+                      showDuration: 200,
+                      hideDuration: 200
+                  };
+              var muncul = "Your barcode Detected : \n" + result.text;
+              toastr.success('Successfully Scan Barcode', muncul);
+              
                 
               }
               if (err && !(err instanceof ZXing.NotFoundException)) {

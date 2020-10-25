@@ -243,10 +243,10 @@
 
         function kesimpulan(){
             if(jarak<=ratakurasi){
-              alert('diterima');
+              swal("Good job!", "Your Location Accepted!", "success");
             }
             else{
-              alert('ditolak');
+              swal("NO!", "Your Location Not Accepted!", "error");
             }
         }
 
