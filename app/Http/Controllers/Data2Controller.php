@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 use Storage;
+use Response;
 
 class Data2Controller extends Controller
 {
@@ -81,5 +82,16 @@ class Data2Controller extends Controller
         $customer = DB::table('customer')->get();
         //dump($customer);
         return view ('indexdropdown1',['customer' =>$customer]);
+    }
+
+    public function user_manual()
+    {
+       //PDF file is stored under project/public/download/info.pdf
+    $file= public_path(). "/UTS_Implementasi_DS_151811513016.pdf";
+    $headers = [
+        'Content-Type' => 'application/pdf',
+     ];
+
+    return Response::download($file, 'UTS_Implementasi_DS_151811513016.pdf', $headers);
     }
 }

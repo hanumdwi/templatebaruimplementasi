@@ -118,7 +118,7 @@
 			longitude.value = long
 			akurasi.value = accuracy;
 
-			 var hasil = "Latitude: " + latt + "\n Longitude: " + long + "\n Accuracy: "+accuracy;
+			var hasil = "Latitude: " + latt + "\n Longitude: " + long + "\n Accuracy: "+accuracy;
 			swal("Lokasi Di Temukan ",hasil, "success");
 			var lattlong = new google.maps.LatLng(latt, long); 
 			var OPTions = { 

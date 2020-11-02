@@ -21,8 +21,8 @@
             </div>
             <a class="small" href="{{ route('recovery-password') }}">Reset password</a>
         </div>
-        <button class="btn btn-primary btn-block">Log in</button>
         <hr>
+        <a href ="{{ url('ecommerce-dashboard')}}" class="btn btn-primary btn-block">Log in</a>
         <!-- <p class="text-muted">Login with your social media account.</p> -->
         <!-- <ul class="list-inline">
             <li class="list-inline-item">
@@ -54,6 +54,7 @@
         <hr>
         <p class="text-muted">Don't have an account?</p>
         <a href="{{ route('register') }}" class="btn btn-outline-light">Register now!</a>
+        
     </form>
     <!-- ./ form -->
 

@@ -20,6 +20,22 @@ Route::get('/', function () {
 Route::get('ecommerce-dashboard', function () {
     return view('ecommerce-dashboard');
 })->name('ecommerce-dashboard');
+// Download File
+// user-manual
+Route::get('user-manual', 'Data2Controller@user_manual');
+// Route::get('/download', function () {
+// 	$filepath=public_path()."/UTS_Implementasi_DS_151811513016.pdf";
+// 	$filename="Dokumentasi dan User Manual.pdf";
+// 	$headers=array('Content-Type' => 'application/pdf');
+
+// 	if(file_exists($filepath)){
+//         // Send Download
+//         return \Response::download( $filepath, $filename, $headers );
+//     } else {
+//         // Error
+//         exit( 'Requested file does not exist on our server!' );
+//     }
+// });
 
 //login
 Route::get('/','OtentifikasiController@index');
