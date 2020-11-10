@@ -52,13 +52,13 @@ class Data2Controller extends Controller
     {
         $base64_str = substr($request->foto, strpos($request->foto, ",")+1);
         $foto = base64_decode($base64_str) ;
-        $x = 1000;
-        $path = '/public/file_foto/foto_customer'.$x.'.png';
+        $nama_foto = $request->nama_foto;
+        $path = '/public/file_foto/foto_customer'.$nama_foto.'.png';
         Storage::put($path,$foto);
 
         DB::table('customer')->insert(['NAMA' => $request->nama,
         'ALAMAT' => $request->alamat,
-        'FILE_PATH' => $path,
+        'FILE_PATH' => '/storage'.$path,
         'ID_KELURAHAN'=> $request->kelurahan,
         ]);
         return redirect('/dropdownlist1');
