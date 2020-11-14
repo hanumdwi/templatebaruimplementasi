@@ -53,8 +53,8 @@ class Data2Controller extends Controller
         $base64_str = substr($request->foto, strpos($request->foto, ",")+1);
         $foto = base64_decode($base64_str) ;
         $nama_foto = $request->nama_foto;
-        $path = '/public/file_foto/foto_customer'.$nama_foto.'.png';
-        Storage::put($path,$foto);
+        $path = '/file_foto/foto_customer'.$nama_foto.'.png';
+        Storage::put('/public'.$path,$foto);
 
         DB::table('customer')->insert(['NAMA' => $request->nama,
         'ALAMAT' => $request->alamat,

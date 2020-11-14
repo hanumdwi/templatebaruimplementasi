@@ -36,7 +36,11 @@
                                     <td>{{ $cus -> NAMA }}</td>
                                     <td>{{ $cus -> ALAMAT }}</td>
                                     <td>{{ $cus -> ID_KELURAHAN }}</td>
-                                    <td>{{ $cus -> FILE_PATH }}</td>
+                                    <!-- <td>{{ $cus -> FILE_PATH }}</td> -->
+                                    <td>
+                                    <center>
+                                    <img src="{{ url($cus -> FILE_PATH) }}" alt="" title="" style="cursor: pointer;">
+                                    </center>
                                     </td>
                                     </tr>
                                     @endforeach
