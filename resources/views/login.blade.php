@@ -21,36 +21,38 @@
             </div>
             <a class="small" href="{{ route('recovery-password') }}">Reset password</a>
         </div>
-        <hr>
+      
         <a href ="{{ url('ecommerce-dashboard')}}" class="btn btn-primary btn-block">Log in</a>
-        <!-- <p class="text-muted">Login with your social media account.</p> -->
-        <!-- <ul class="list-inline">
-            <li class="list-inline-item">
+        <hr>
+        <p class="text-muted">Login with your social media account.</p>
+        
+        <ul class="list-inline">
+            <!-- <li class="list-inline-item">
                 <a href="#" class="btn btn-floating btn-facebook">
                     <i class="fa fa-facebook"></i>
                 </a>
-            </li>
-            <li class="list-inline-item">
+            </li> -->
+            <!-- <li class="list-inline-item">
                 <a href="#" class="btn btn-floating btn-twitter">
                     <i class="fa fa-twitter"></i>
                 </a>
-            </li>
+            </li> -->
             <li class="list-inline-item">
-                <a href="#" class="btn btn-floating btn-dribbble">
-                    <i class="fa fa-dribbble"></i>
+                <a href="login/github" class="btn btn-floating btn-dribbble">
+                    <i class="fa fa-github"></i>
                 </a>
             </li>
-            <li class="list-inline-item">
+            <!-- <li class="list-inline-item">
                 <a href="#" class="btn btn-floating btn-linkedin">
                     <i class="fa fa-linkedin"></i>
                 </a>
-            </li>
+            </li> -->
             <li class="list-inline-item">
-                <a href="#" class="btn btn-floating btn-google">
+                <a href="login/google" class="btn btn-floating btn-google">
                     <i class="fa fa-google"></i>
                 </a>
             </li>
-        </ul> -->
+        </ul> 
         <hr>
         <p class="text-muted">Don't have an account?</p>
         <a href="{{ route('register') }}" class="btn btn-outline-light">Register now!</a>
