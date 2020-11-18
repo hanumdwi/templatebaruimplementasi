@@ -13,8 +13,7 @@
 @endsection
 
 @section('content')
-
-    <div class="page-header">
+<div class="page-header">
         <div class="page-title">
             <h3>E-commerce Dashboard</h3>
             <div>
@@ -40,7 +39,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-title d-flex justify-content-between">
-                        <h6 class="card-title">Download File User Manual and Documentation</h6>
+                        <h6 class="card-title">Profile</h6>
                         <div>
                             <a href="#" class="btn btn-outline-light btn-sm btn-floating mr-2">
                                 <i class="fa fa-refresh"></i>
@@ -57,18 +56,58 @@
                             
                         </div>
                     </div>
-                  
+                    <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title mb-0">Profile User</h6>
+                </div>
+                <div class="table-responsive">
+                    <table id="myTable" class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                                    <th>Id User</th>
+                                    <th>Nama</th>
+                                    <th>Email</th>
+                                    <th>Photo</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                        
+                    
+                    
+                    
+                                    
+                                    <td>{{Session::get('id')}}</td>
+                                    <td>{{Session::get('nama')}}</td>
+                                    <td>{{Session::get('email')}}</td>
+                                    <td><img src="{{Session::get('avatar')}}" alt=""></td>
+                                    </td>
+                                    </tr>
+                                    <!-- </tr> -->
+                                    
+                                    </tbody>
+                                    <tfoot>
+                        <tr>
+                        <th>Id User</th>
+                                    <th>Nama</th>
+                                    <th>Email</th>
+                                    <th>Photo</th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                    </table>
+                </div>
+                
+        </div>
+    </div>
 
-
-                    <a href="{{url('user-manual')}}">
-        	<button class="btn btn-outline-info mb-2 ml-1" >Downloadable File</button>
-        </a>
-                           
                    
                 </div>
             </div>
         </div>
     </div>
+                    
 @endsection
 
 @section('script')

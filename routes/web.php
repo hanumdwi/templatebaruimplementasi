@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('ecommerce-dashboard');
 })->name('index');
 
-Route::get('ecommerce-dashboard', function () {
+Route::get('login/google/ecommerce-dashboard', function () {
     return view('ecommerce-dashboard');
 })->name('ecommerce-dashboard');
 // Download File
@@ -42,9 +42,11 @@ Route::get('/','OtentifikasiController@index');
 Route::post('login','OtentifikasiController@login');
 
 //Login with sosial media
-Route::get('login/{website}','OtentifikasiController@redirectToProvider');
-Route::get('login/{website}/callback','OtentifikasiController@handleProviderCallback');
+Route::get('login/google','OtentifikasiController@redirectToProvider');
+Route::get('login/google/callback','OtentifikasiController@handleProviderCallback');
 
+//Profile
+Route::get('login/google/profile','OtentifikasiController@profill');
 
 Route::get('login/google/dropdownlist/getstates/{id}','Data2Controller@getStates');
 Route::get('login/google/dropdownlist/getkecamatan/{id}','Data2Controller@getKecamatan');
@@ -76,8 +78,8 @@ Route::get('login/google/barcode/getbarcode/{id}','BarcodeTokoController@getBarc
 //===============================================================================================================
 
 //GitHub
-Route::get('login/{website}','OtentifikasiController@redirectToProvider1');
-Route::get('login/{website}/callback','OtentifikasiController@handleProviderCallback1');
+Route::get('login/github','OtentifikasiController@redirectToProvider1');
+Route::get('login/github/callback','OtentifikasiController@handleProviderCallback1');
 
 Route::get('login/github/dropdownlist/getstates/{id}','Data2Controller@getStates');
 Route::get('login/github/dropdownlist/getkecamatan/{id}','Data2Controller@getKecamatan');

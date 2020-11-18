@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Socialite;
 use\App\User;
+use Illuminate\Support\Facades\Session;
+
 
 class OtentifikasiController extends Controller
 {
@@ -22,7 +24,21 @@ class OtentifikasiController extends Controller
 
     public function handleProviderCallback(){
         $user = Socialite::driver('google')->stateless()->user();
-
+        $nama = $user->getName();
+        $email = $user->getEmail();
+        $id = $user->getId();
+        $avatar = $user->getAvatar();
+        // $gambar = $user->getPicture();
+        // $gambar = $user->getImageUrl();
+        // dump ($user);
+        // echo ($nama);
+        // echo ($email);
+        // echo ($id);
+        // echo ($avatar);
+        Session::put('nama',$nama);
+        Session::put('email',$email);
+        Session::put('id',$id);
+        Session::put('avatar',$avatar);
         return view('ecommerce-dashboard');
     }
 
@@ -34,6 +50,10 @@ class OtentifikasiController extends Controller
         $user = Socialite::driver('github')->stateless()->user();
 
         return view('ecommerce-dashboard');
+    }
+
+    public function profill(){
+        return view('profile');
     }
 
     public function index(){
