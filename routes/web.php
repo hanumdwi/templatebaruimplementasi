@@ -66,6 +66,7 @@ Route::get('login/google/indexdropdown1', 'Data2Controller@index1');
 Route::get('login/google/barcode','BarcodeController@barcode');
 Route::get('login/google/pdf-barcode/{id}', 'BarcodeController@pdf_barcode');
 Route::get('login/google/test-barcode', 'BarcodeController@test_barcode');
+Route::post('login/google/barangimport', 'BarcodeController@import');
 
 //TOKO
 Route::get('login/google/barcodetoko','BarcodeTokoController@barcode');

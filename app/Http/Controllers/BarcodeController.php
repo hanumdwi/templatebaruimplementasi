@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Barang;
 use Illuminate\Http\Request;
 use Milon\Barcode\DNS1D;
 use DB;
 use PDF;
+use App\Imports\BarangImport;
+use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BarcodeController extends Controller
 {
@@ -47,5 +51,35 @@ class BarcodeController extends Controller
 
     function test_barcode(){
         return view('test-barcode');
+    }
+
+    public function import(Request $request)
+    {
+        $barang=DB::table('barang')->get();
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        $file = $request->file('file');
+
+        // membuat nama file unik
+        $nama_file = $file->hashName();
+
+        //temporary file
+        $path = $file->storeAs('public/excel/',$nama_file);
+
+        // import data
+        $import = Excel::import(new BarangImport(), storage_path('app/public/excel/'.$nama_file));
+        
+        //remove from server
+        Storage::delete($path);
+
+        if($import) {
+            //redirect
+            return view('barcode', ['barang' =>$barang])->with(['success' => 'Data Berhasil Diimport!']);
+        } else {
+            //redirect
+            return view('barcode', ['barang' =>$barang])->with(['error' => 'Data Gagal Diimport!']);
+        }
     }
 }

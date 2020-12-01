@@ -25,7 +25,13 @@
                 <div class="card-body">
                     <h6 class="card-title mb-0">Table Barang</h6>
                 </div>
+                        
                 <div class="table-responsive">
+                <center>
+                    <button type="button" class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#import">
+                        <i class="ti-upload mr-2"></i>Import Excel
+                    </button>
+                </center>
                     <table id="myTable" class="table table-striped table-bordered">
                         <thead>
                         <tr>
@@ -70,6 +76,33 @@
                 
         </div>
     </div>
+
+        <!-- modal -->
+        <div class="modal fade" id="import" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">IMPORT DATA</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="barangimport" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>PILIH FILE</label>
+                                <input type="file" name="file" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">TUTUP</button>
+                            <button type="submit" class="btn btn-success">IMPORT</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
 
 @endsection
