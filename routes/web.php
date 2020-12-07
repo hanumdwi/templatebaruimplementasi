@@ -60,8 +60,15 @@ Route::get('login/google/dropdownlist1','Data2Controller@getCountries1');
 Route::post('login/google/customerstore1', 'Data2Controller@customer_store1');
 Route::post('login/google/customerstore2', 'Data2Controller@customer_store2');
 
-Route::get('login/google/indexdropdown', 'Data2Controller@index');
+Route::get('login/google/indexdropdown', 'Data2Controller@index')->name('dropdownindex');
 Route::get('login/google/indexdropdown1', 'Data2Controller@index1');
+
+
+
+// Route::post('login/google/customerimport', 'Data2Controller@import_excel');
+Route::post('login/google/customerimport', 'Data2Controller@import');
+
+
 
 Route::get('login/google/barcode','BarcodeController@barcode');
 Route::get('login/google/pdf-barcode/{id}', 'BarcodeController@pdf_barcode');

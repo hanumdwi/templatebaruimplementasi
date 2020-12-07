@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 
+use App\Customer;
 use Illuminate\Http\Request;
 use DB;
-use Storage;
 use Response;
+use App\Imports\CustomerImport;
+use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Data2Controller extends Controller
 {
@@ -72,9 +75,14 @@ class Data2Controller extends Controller
 
     public function index()
     {
-        $customer = DB::table('customer')->get();
+        $kelurahan = DB::table('kelurahan')->get();
+        $customer = DB::table('customer')
+        ->join('kelurahan', 'customer.ID_KELURAHAN', '=', 'kelurahan.ID_KELURAHAN')
+        ->select('customer.ID_CUSTOMER', 'customer.NAMA', 'customer.ALAMAT', 
+        'customer.FOTO', 'customer.FILE_PATH', 'kelurahan.KODEPOS')
+        ->get();
         //dump($customer);
-        return view ('indexdropdown',['customer' =>$customer]);
+        return view ('indexdropdown',['customer' =>$customer, 'kelurahan' => $kelurahan]);
     }
 
     public function index1()
@@ -94,4 +102,67 @@ class Data2Controller extends Controller
 
     return Response::download($file, 'UTS_Implementasi_DS_151811513016.pdf', $headers);
     }
+
+    public function import_excel(Request $request)
+    {
+        $this->validate($request, [
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+
+            // try{
+                $file = $request->file('file')->store('import');
+                $import = new CustomerImport;
+                $import->import($file);
+                dump($import->failures());
+            // }
+            // catch(\Exception $e){
+                // return redirect()->route('dropdownindex');
+            // }
+            if($import->failures()->isNotEmpty()){
+                // return back()->withFailures($import->failures());
+                echo "masuk pertama";
+            }
+            else{
+                // return redirect()->route('dropdownindex');
+                echo "masuk kedua";
+            }
+    }
+
+    public function import(Request $request)
+    {
+        $rule = [
+            'id_customer'       => 'required|unique:customer|min:4,',
+            'nama'              => 'required|string',
+            'alamat'            => 'required|string',
+            'kodepos'           => 'required'
+        ];
+
+        $this->validate($request, [
+            'file'              => 'required|mimes:csv,xls,xlsx',
+            
+        ], $rule);
+
+        $file = $request->file('file');
+
+        // membuat nama file unik
+        $nama_file = $file->hashName();
+
+        //temporary file
+        $path = $file->storeAs('public/excel/',$nama_file);
+
+        // import data
+        $import = Excel::import(new CustomerImport(), storage_path('app/public/excel/'.$nama_file));
+
+        //remove from server
+        Storage::delete($path);
+
+        if($import) {
+            //redirect
+            return redirect()->route('dropdownindex')->with(['success' => 'Data Berhasil Diimport!']);
+        } else {
+            //redirect
+            return redirect()->route('dropdownindex')->with(['error' => 'Data Gagal Diimport!']);
+        }
+    }
+
 }
