@@ -10,6 +10,8 @@ use Response;
 use App\Imports\CustomerImport;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\CustomerrrImport;
+use Validator;
 
 class Data2Controller extends Controller
 {
@@ -163,6 +165,33 @@ class Data2Controller extends Controller
             //redirect
             return redirect()->route('dropdownindex')->with(['error' => 'Data Gagal Diimport!']);
         }
+    }
+
+    public function show()
+    {
+        $customer=DB::table('customer')->get();
+
+        return view('customer');
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+
+        $file = $request->file('file')->store('import');
+
+        $import = new CustomerrrImport;
+        $import->import($file);
+        dump($import->failures());
+
+        if ($import->failures()->isNotEmpty()) {
+            return back()->withFailures($import->failures());
+        }
+
+
+        return back()->withStatus('Import in queue, we will send notification after import finished.');
     }
 
 }

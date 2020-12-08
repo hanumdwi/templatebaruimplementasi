@@ -19,5 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('show-barang', 'ApiController@show');
+Route::get('show-barang/{id}', 'ApiController@show1');
 Route::post('input-barang', 'ApiController@insert');
 Route::put('update-barang/{id}', 'ApiController@update');

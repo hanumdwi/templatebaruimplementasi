@@ -66,7 +66,10 @@ Route::get('login/google/indexdropdown1', 'Data2Controller@index1');
 
 
 // Route::post('login/google/customerimport', 'Data2Controller@import_excel');
-Route::post('login/google/customerimport', 'Data2Controller@import');
+//Route::post('login/google/customerimport', 'Data2Controller@import');
+
+Route::get('login/google/customerimport', 'CustomerImportController@show');
+Route::post('login/google/customerimport', 'CustomerImportController@store');
 
 
 

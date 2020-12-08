@@ -36,6 +36,11 @@ class ApiController extends Controller
         return response()->json(Barang::all(),200);
     }
 
+    public function show1($id)
+    {
+        return response()->json(Barang::find($id),200);
+    }
+
     public function update(Request $request, $id)
     {
         $cek_barang = Barang::firstwhere('ID_BARANG', $id);

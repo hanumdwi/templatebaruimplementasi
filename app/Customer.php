@@ -8,7 +8,7 @@ class Customer extends Model
 {
     public $timestamps = false;
 
-    // protected $primaryKey = 'ID_CUSTOMER';
+    protected $primaryKey = 'ID_CUSTOMER';
 
     protected $table = 'customer';
 
