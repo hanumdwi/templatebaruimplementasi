@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Baston - Responsive Admin Dashboard Template</title>
 
     <!-- Favicon -->
@@ -28,7 +29,7 @@
 @if(trim($__env->yieldContent('bodyClass')))
 <body class="@yield('bodyClass')">
 @else
-<body class="dark small-navigation">
+<body class="light small-navigation">
 @endif
 <!-- Preloader -->
 <div class="preloader">
@@ -723,6 +724,14 @@
                                 <span>Geolocation</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="#" data-menu-target="#scoreboard">
+                                <span class="menu-tab-icon">
+                                    <i data-feather="list"></i>
+                                </span>
+                                <span>Scoreboard</span>
+                            </a>
+                        </li>
                   
                     </ul>
                 </div>
@@ -843,6 +852,26 @@
                                     <i class="fa fa-video-camera"></i>
                                 </span>
                                 <span>Scan Barcode Geolocation</span>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                    <ul id="scoreboard">
+                        <li class="navigation-divider">Scoreboard Futsal</li>
+                        <li>
+                            <a class="active" href="scoreboard">
+                            <span class="nav-link-icon">
+                                    <i class="fa fa-info-circle"></i>
+                                </span>
+                                <span>Futsal Scoreboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="active" href="controller">
+                            <span class="nav-link-icon">
+                                    <i class="fa fa-home"></i>
+                                </span>
+                                <span>Dashboard</span>
                             </a>
                         </li>
                         

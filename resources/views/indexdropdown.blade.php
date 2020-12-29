@@ -40,25 +40,25 @@
                                 <th>Value</th>
                             </tr>
 
-                            @foreach (session()->has('failures') as $validation)
-                            <tr>
-                                <td>{{$loop->iteration}}</td>
-                                <td>{{$validation->row()}}</td>
-                                <td>{{$validation->attribute()}}</td>
-                                <td>{{$validation->values()[$validation->attribute()]}}</td>
-                                <td>
-                                    <ul>
-                                        @foreach($validation->errors() as $e)
-                                            <li>{{$e}}</li>
-                                        @endforeach
-                                    </ul>
-                                </td>
-                            </tr>
-                        @endforeach
+                            @foreach (session()->get('failures') as $validation)
+                                <tr>
+                                    <td>{{ $validation->row() }}</td>
+                                    <td>{{ $validation->attribute() }}</td>
+                                    <td>
+                                        <ul>
+                                            @foreach ($validation->errors() as $e)
+                                                <li>{{ $e }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        {{ $validation->values()[$validation->attribute()] }}
+                                    </td>
+                                </tr>
+                            @endforeach
                         </table>
 
                     @endif
-
                    
                     <h6 class="card-title mb-0">Table Customers</h6>
                 </div>
@@ -98,10 +98,11 @@
                                     </tbody>
                                     <tfoot>
                         <tr>
+                                    <th>#</th>
                                     <th>Id Customer</th>
                                     <th>Nama</th>
                                     <th>Alamat</th>
-                                    <th>Id Kelurahan</th>
+                                    <th>Kode Pos</th>
                                     <!-- <th>Foto</th> -->
                         </tr>
                         </tfoot>
