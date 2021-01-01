@@ -133,6 +133,29 @@ Route::post('/scoreboard-controller/update', 'ScoreboardController@controller_st
 
 Route::get('/messages', 'ScoreboardController@message');
 
+Route::get('display_scoreboard', 'controllerscoreboard@scoreboard_index');
+Route::get('kontrol_scoreboard', 'controllerscoreboard@controller_index');
+Route::get('sse', 'controllerscoreboard@update_sse');
+
+Route::post('store-home','controllerscoreboard@store_home');
+Route::post('store-away','controllerscoreboard@store_away');
+Route::post('store-homeplus2','controllerscoreboard@scorehomeplus2');
+Route::post('store-homeminus2','controllerscoreboard@scorehomeminus2');
+Route::post('store-homeplus3','controllerscoreboard@scorehomeplus3');
+Route::post('store-homeminus3','controllerscoreboard@scorehomeminus3');
+Route::post('store-awayplus2','controllerscoreboard@scoreawayplus2');
+Route::post('store-awayminus2','controllerscoreboard@scoreawayminus2');
+Route::post('store-awayplus3','controllerscoreboard@scoreawayplus3');
+Route::post('store-awayminus3','controllerscoreboard@scoreawayminus3');
+Route::post('store-sound1','controllerscoreboard@store_sound1');
+Route::post('store-sound2','controllerscoreboard@store_sound2');
+Route::post('store-sound3','controllerscoreboard@store_sound3');
+Route::post('update-sound','controllerscoreboard@update_sound');
+Route::post('update-menit-detik','controllerscoreboard@update_menit_detik');
+Route::post('reset-menit-detik','controllerscoreboard@reset_menit_detik');
+Route::post('resume-menit-detik','controllerscoreboard@resume_menit_detik');
+Route::post('stop-menit-detik','controllerscoreboard@stop_menit_detik');
+
 
 
 //=========================================================================================
