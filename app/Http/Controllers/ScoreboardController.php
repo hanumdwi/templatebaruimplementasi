@@ -14,8 +14,8 @@ class ScoreboardController extends Controller
     public function message(){
         $response = new \Symfony\Component\HttpFoundation\StreamedResponse(function() {
             while(true) {
-                $data = DB::table('scoreboard')
-                ->join('sound', 'scoreboard.id_sound', '=', 'sound.id_sound')
+                $data = DB::table('scoreboard2')
+                ->join('sound', 'scoreboard2.id_sound', '=', 'sound.id_sound')
                 ->get();
                 echo 'data: ' . json_encode($data) . "\n\n";
                 
@@ -37,12 +37,12 @@ class ScoreboardController extends Controller
 
     public function controller_store(Request $r){
         if($r->countdown != null){
-            DB::table('scoreboard')->where('id', $r->id)->update([
+            DB::table('scoreboard2')->where('id', $r->id)->update([
                 'countdown' => $r->countdown
             ]);
         }
         elseif($r->status != null){
-            DB::table('scoreboard')->where('id', $r->id)->update([
+            DB::table('scoreboard2')->where('id', $r->id)->update([
                 'id_sound' => $r->id_sound
             ]);
             DB::table('sound')->where('id_sound', $r->id_sound)->update([
@@ -50,7 +50,7 @@ class ScoreboardController extends Controller
             ]);
         }
         else{
-            DB::table('scoreboard')->where('id', $r->id)->update([
+            DB::table('scoreboard2')->where('id', $r->id)->update([
                 'home' => strtoupper($r->home),
                 'away' => strtoupper($r->away),
                 'home_score' => $r->home_score,

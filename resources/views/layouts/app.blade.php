@@ -29,7 +29,7 @@
 @if(trim($__env->yieldContent('bodyClass')))
 <body class="@yield('bodyClass')">
 @else
-<body class="light small-navigation">
+<body class="dark small-navigation">
 @endif
 <!-- Preloader -->
 <div class="preloader">

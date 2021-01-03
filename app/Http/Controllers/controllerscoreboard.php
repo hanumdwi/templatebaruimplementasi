@@ -262,7 +262,87 @@ class controllerscoreboard extends Controller
     
        
     }
+
+    public function scorehomefouls(Request $request){
+        // $score = DB::table('scoreboard')->select('score_home')->where('id', '1')->first();
+        $score = DB::table('scoreboard')->where('id', '1')->get();
+        foreach($score as $sc){
+            $result = $sc->fouls_home;
+        }
+            $result_fix = $result+1;
+        DB::table('scoreboard')->where('id','1')->update([
+            'fouls_home' =>  $result_fix
+        ]);
+    }
+
+    public function scoreawayfouls(Request $request){
+        // $score = DB::table('scoreboard')->select('score_home')->where('id', '1')->first();
+        $score = DB::table('scoreboard')->where('id', '1')->get();
+        foreach($score as $sc){
+            $result = $sc->fouls_away;
+        }
+            $result_fix = $result+1;
+        DB::table('scoreboard')->where('id','1')->update([
+            'fouls_away' =>  $result_fix
+        ]);
+    }
   
+    public function fouls_homeminus(Request $request){
+        // $score = DB::table('scoreboard')->select('score_home')->where('id', '1')->first();
+        $score = DB::table('scoreboard')->where('id', '1')->get();
+        foreach($score as $sc){
+            $result = $sc->fouls_home;
+        }
+            $result_fix = $result-1;
+            if($result_fix<0){
+               $result_fix=0;
+            }
+        DB::table('scoreboard')->where('id','1')->update([
+            'fouls_home' =>  $result_fix
+        ]);
+    }
+
+    public function fouls_awayminus(Request $request){
+        // $score = DB::table('scoreboard')->select('score_home')->where('id', '1')->first();
+        $score = DB::table('scoreboard')->where('id', '1')->get();
+        foreach($score as $sc){
+            $result = $sc->fouls_away;
+        }
+            $result_fix = $result-1;
+            if($result_fix<0){
+               $result_fix=0;
+            }
+        DB::table('scoreboard')->where('id','1')->update([
+            'fouls_away' =>  $result_fix
+        ]);
+    }
+
+    public function period_plus(Request $request){
+        // $score = DB::table('scoreboard')->select('score_home')->where('id', '1')->first();
+        $score = DB::table('scoreboard')->where('id', '1')->get();
+        foreach($score as $sc){
+            $result = $sc->period;
+        }
+            $result_fix = $result+1;
+        DB::table('scoreboard')->where('id','1')->update([
+            'period' =>  $result_fix
+        ]);
+    }
+
+    public function period_min(Request $request){
+        // $score = DB::table('scoreboard')->select('score_home')->where('id', '1')->first();
+        $score = DB::table('scoreboard')->where('id', '1')->get();
+        foreach($score as $sc){
+            $result = $sc->period;
+        }
+            $result_fix = $result-1;
+            if($result_fix<0){
+               $result_fix=0;
+            }
+        DB::table('scoreboard')->where('id','1')->update([
+            'period' =>  $result_fix
+        ]);
+    }
 
 
 

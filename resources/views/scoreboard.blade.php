@@ -203,7 +203,7 @@ if(typeof(EventSource) !== "undefined") {
         console.log('path :'+aud);
 
         if(status != 0){
-            aud = '/storage/app/public/file_foto'+aud;
+            aud = '/storage/lagu'+aud;
             sound_play(aud);
         }
     });

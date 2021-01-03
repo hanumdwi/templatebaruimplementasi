@@ -156,6 +156,13 @@ Route::post('reset-menit-detik','controllerscoreboard@reset_menit_detik');
 Route::post('resume-menit-detik','controllerscoreboard@resume_menit_detik');
 Route::post('stop-menit-detik','controllerscoreboard@stop_menit_detik');
 
+Route::post('store-homefouls','controllerscoreboard@scorehomefouls');
+Route::post('store-awayfouls','controllerscoreboard@scoreawayfouls');
+Route::post('store-homefoulsmin','controllerscoreboard@fouls_homeminus');
+Route::post('store-awayfoulsmin','controllerscoreboard@fouls_awayminus');
+
+Route::post('store-periodplus','controllerscoreboard@period_plus');
+Route::post('store-periodmin','controllerscoreboard@period_min');
 
 
 //=========================================================================================

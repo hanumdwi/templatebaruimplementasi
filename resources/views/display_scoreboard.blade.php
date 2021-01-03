@@ -26,9 +26,79 @@
   Your browser does not support the audio element.
 </audio>
 
+<div class="page-header">
+        <h4>Basket Scoreboard</h4>
+        <hr>
+    </div>
 
+    <div class="row">
+        <div class="col d-flex align-items-center justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="col d-flex align-items-center justify-content-center">
+                            <div class="table-responsive col-md-12">
+                                <table class="table table-active text-center">
+                                    <thead>
+                                      <tr>
+                                        <td>
+                                        <h1>HOME</h1>
+                                                <h4  id="name_home">TEAM A</h4>
+                                            </td>
+                                            <td><h1 style="color: red">BASKET</h1></td>
+                                            <td>
+                                                <h1>AWAY</h1>
+                                                <h4 id="name_away">TEAM B</h4>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center">
+                                                <div id="score_home" style="display:table-cell; border: 5px solid purple; width: 80px; height: 80px; vertical-align: middle; text-align: center; font-size: 48px;">
+                                                    0
+                                                </div>
+                                            </td>
+                                            <td style="width: 20%">
+                                                <h2>PERIOD</h2>
+                                                <h1 id="period">1</h1>
+                                            </td>
+                                            <td align="center">
+                                                <div id="score_away" style="display:table-cell; border: 5px solid purple; width: 80px; height: 80px; vertical-align: middle; text-align: center; font-size: 48px;">
+                                                    0
+                                                </div>
+                                            </td>
+                                            </tr>
+                                        <tr>
+                                            <td align="center">
+                                                <h1>FOUL</h1>
+                                                <div id="fouls_home" style="display:table-cell; border: 5px solid purple; width: 50px; height: 50px; vertical-align: middle; text-align: center; font-size: 32px;">
+                                                    0
+                                                </div>
+                                            </td>
+                                            <td align="center" style="width: 40%">
+                                                <h1>TIME</h1>
+                                                <div id="timer" style="display:table-cell; border: 5px solid yellow; width: 180px; height: 60px; vertical-align: middle; text-align: center; font-size: 42px;">
+                                                09 : 00
+                                                </div>
+                                            </td>
+                                            <td align="center">
+                                                <h1>FOUL</h1>
+                                                <div id="fouls_away" style="display:table-cell; border: 5px solid purple; width: 50px; height: 50px; vertical-align: middle; text-align: center; font-size: 32px;">
+                                                    0
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<center>
+<!-- <center>
 <div class="form-row">
     <div class="col md-4" id="name_home">a</div>
     <div class="col md-4" id="name_away">b</div>
@@ -42,7 +112,7 @@
 
 <center class="mt-4">
 <div>Timer = <span id="timer">09 : 00</span></div>
-</center>
+</center> -->
     
 
 @endsection
@@ -61,6 +131,9 @@ window.onload = function() {
           document.getElementById("name_away").innerHTML=data_json[0].name_away;
           document.getElementById("score_home").innerHTML=data_json[0].score_home;
           document.getElementById("score_away").innerHTML=data_json[0].score_away;
+          document.getElementById("fouls_home").innerHTML=data_json[0].fouls_home;
+          document.getElementById("fouls_away").innerHTML=data_json[0].fouls_away;
+          document.getElementById("period").innerHTML=data_json[0].period;
 
       
           
