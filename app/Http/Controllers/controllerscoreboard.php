@@ -344,6 +344,20 @@ class controllerscoreboard extends Controller
         ]);
     }
 
+    public function reset_pertandingan(Request $request){
+        DB::table('scoreboard')->where('id','1')->update([
+            'status_waktu' => 0,
+            'score_home' => 0,
+            'score_away' => 0,
+            'fouls_home' => 0,
+            'fouls_away' => 0,
+            'menit' => "10",
+            'detik' => "00" ,
+            "name_home" => "-",
+            "name_away" => "-"
+       ]);
 
+       
+    }
 
 }

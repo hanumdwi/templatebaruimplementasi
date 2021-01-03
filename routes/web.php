@@ -164,6 +164,8 @@ Route::post('store-awayfoulsmin','controllerscoreboard@fouls_awayminus');
 Route::post('store-periodplus','controllerscoreboard@period_plus');
 Route::post('store-periodmin','controllerscoreboard@period_min');
 
+Route::post('store-reset','controllerscoreboard@reset_pertandingan');
+
 
 //=========================================================================================
 

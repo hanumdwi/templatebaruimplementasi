@@ -133,6 +133,7 @@
                                                     </button>
                                                     </form>
                                                 </div></br></br>
+                                                
     </div>
 
 </center>
@@ -151,6 +152,15 @@
                                                         </button>
                                                     </div>
                                                 </div>
+</br>
+<hr>
+<h4 class="mt-4" align="center">Scoreboard</h4>
+</br>
+<div class="form-inline" style="display: flex; justify-content: center; align-items: center;">
+        <form action="/store-reset" method="POST">
+            <button type="submit" class="btn btn-outline-secondary btn-submit-reset" name="reset"> Reset Scoreboard</button>
+        </form>
+    </div>
 </br>
 <hr>
 <div class="form-row">
@@ -958,6 +968,39 @@
         });
     });
     
+</script>
+
+<script>
+$.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $(".btn-submit-reset").click(function(e){
+        console.log('reset');
+        e.preventDefault();
+
+        var url = '{{ url('store-reset') }}';
+
+        $.ajax({
+           url:url,
+           method:'POST',
+           data:{
+              
+           },
+           success:function(response){
+              if(response.success){
+                  console.log('sukses')
+              }else{
+                //   alert("Error")
+              }
+           },
+           error:function(error){
+              console.log(error)
+           }
+        });
+    });
 </script>
 
 @endsection
